@@ -13,7 +13,9 @@
 	IN	
 	STO	num
 	STO	tmp
-	OUT	
+	OUT
+	SUB	max
+	BRP	error
 start	LDA	tmp
 	SUB	one
 	BRZ	cycle
@@ -47,12 +49,18 @@ cycle	LDA	num
 	BR	start
 endloop	LDA	one
 	HLT
+error	LDA	zero
+	OUT
+	HLT
 num	DAT	000
 tmp	DAT	000
 one	DAT	001
 count	DAT	001
 two	DAT	002
-kay	DAT	012
+max	DAT	332
+zero	DAT	000
+
+
 
 
 
