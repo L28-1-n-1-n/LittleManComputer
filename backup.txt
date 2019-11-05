@@ -1,0 +1,156 @@
+INP	
+STA	num
+STA	tmp
+OUT	num
+start	LDA	tmp
+SUB	two
+STA	tmp
+BRZ	loop
+BRN	cycle
+LDA	count
+ADD	one
+STA	count
+done	BRA	start
+loop	LDA	count
+OUT
+done	STO	num	
+ADD	count
+STA	tmp
+OUT
+LDA	count
+ADD	one
+STA	count
+LDA	n
+SUB	one
+STA	n
+BRP	start
+done	LDA	tmp	
+HLT
+num	DAT	000
+tmp	DAT	000
+one	DAT	001
+count	DAT	001
+two	DAY	002
+
+version 2:
+INP	
+STA	num
+STA	tmp
+OUT	num
+start	LDA	tmp
+SUB	two
+STA	tmp
+BRZ	loop
+BRN	cycle
+LDA	count
+ADD	one
+STA	count
+done	BRA	start
+loop	LDA	count
+OUT
+STO	num
+STO	tmp
+LDA	one
+done	STO	count
+cycle	LDA	num
+ADD	num
+ADD	num
+ADD	num
+ADD	one
+STO	num
+STO	tmp
+OUT
+LDA	one
+done	STO	count	
+HLT
+num	DAT	000
+tmp	DAT	000
+one	DAT	001
+count	DAT	001
+two	DAY	002
+
+version 3:
+INP	
+STA	num
+STA	tmp
+OUT	num
+start	LDA	tmp
+SUB	one
+BRZ	endp
+SUB	one
+STA	tmp
+BRZ	loop
+BRN	cycle
+LDA	count
+ADD	one
+STA	count
+done	BRA	start
+loop	LDA	count
+OUT
+STO	num
+STO	tmp
+LDA	one
+done	STO	count
+cycle	LDA	num
+ADD	num
+ADD	num
+ADD	num
+ADD	one
+STO	num
+STO	tmp
+OUT
+LDA	one
+done	STO	count
+endp	OUT	one	
+HLT
+num	DAT	000
+tmp	DAT	000
+one	DAT	001
+count	DAT	001
+two	DAT	002
+
+version 4:
+INP	
+STA	num
+STA	tmp
+LDA	num
+OUT	
+start	LDA	tmp
+SUB	one
+BRZ	cycle
+SUB	one
+STA	tmp
+BRZ	loop
+LDA	count
+ADD	one
+STA	count
+done	BRA	start
+loop	LDA	count
+OUT
+STO	num
+STO	tmp
+LDA	one
+done	STO	count
+cycle	LDA	tmp
+SUB	one
+BRZ	endp
+LDA	num
+ADD	num
+ADD	num
+ADD	num
+ADD	one
+STO	num
+STO	tmp
+OUT
+LDA	one
+done	STO	count
+endp	LDA	tmp
+OUT	one	
+HLT
+num	DAT	000
+tmp	DAT	000
+one	DAT	001
+count	DAT	001
+two	DAT	002
+
+***** BRN Does not exist in Little Minion !!!!! *****
