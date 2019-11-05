@@ -18,7 +18,10 @@
 	BRZ	seul
 	SUB	max
 	BRP	error
-start	LDA	tmp
+start	LDA	count
+	ADD	one
+	STO	count
+	LDA	tmp
 	SUB	two
 	STO	tmp
 	BRZ	even
@@ -33,16 +36,10 @@ odd	LDA	num
 	STO	num
 	STO	tmp
 	OUT
+	LDA	zero
+	STO	count
 	BR	start
 even	LDA	count
-	ADD	one
-	STO	count
-	LDA	num
-	SUB	two
-	STO	num
-	BRZ	endeven
-	BR	even
-endeven	LDA	count
 	SUB	one
 	BRZ	last
 	ADD	one
@@ -66,6 +63,10 @@ one	DAT	001
 two	DAT	002
 max	DAT	331
 zero	DAT	000
+
+
+
+
 
 
 
