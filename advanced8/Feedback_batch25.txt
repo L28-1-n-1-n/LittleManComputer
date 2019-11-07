@@ -1,0 +1,10 @@
+Feedback for LMC file: batch25.txt
+
+
+Attempting to compile: Compile failed
+
+Errors:
+Line 0: Bad instruction: '25;'
+
+
+
