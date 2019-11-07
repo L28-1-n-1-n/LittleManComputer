@@ -1,0 +1,120 @@
+# Enter assembler code here
+#
+# To add comments begin lines with #
+# Code lines have 3 entries separated by tabs
+# > First an optional label,
+# > second an instruction mnemonic, and 
+# > third an address label if required.
+#
+# Valid mnemonics are:
+# HLT, ADD, SUB, STO, LDA,
+# BR, BRZ, BRP, IN, OUT, DAT
+
+	IN	
+	STO	orig
+	STO	num
+	STO	tmp
+	OUT
+	SUB	one
+	BRZ 	seul
+start	LDA	tmp
+	SUB	lastquo
+	SUB	lastquo
+	STO	tmp
+	BRZ	even
+	BRP	adjust	
+	LDA	num
+	SUB	evensum
+	SUB	evensum
+	STO	tmp
+	SUB	one
+	BRZ	odd
+	LDA	one
+	STO	lastquo
+	BR	start
+odd	LDA	orig
+	SUB	lim
+	BRP	error
+	LDA	orig
+	ADD	orig
+	ADD	orig
+	ADD	one
+	STO	orig
+	STO	num
+	STO	tmp
+	OUT
+	LDA	one
+	STO	lastquo
+	LDA	zero
+	STO	evensum
+	BR	start
+even	LDA	evensum
+	ADD	lastquo
+	OUT
+	STO	num
+	STO	tmp
+	STO	orig
+	SUB	one
+	BRZ	seul
+	LDA	one
+	STO	lastquo
+	LDA	zero
+	STO	evensum
+	BR	start
+error	LDA	zero
+	OUT
+	HLT
+adjust	LDA	evensum
+	ADD	lastquo
+	STO	evensum
+	LDA	lastquo
+	ADD	lastquo
+	STO	lastquo
+	BR	start
+seul	HLT
+orig	DAT	000
+num	DAT	000
+tmp	DAT	000
+count	DAT	000
+one	DAT	001
+two	DAT	002
+lim	DAT	332
+lastquo	DAT	001
+evensum DAT		000
+zero	DAT	000
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
