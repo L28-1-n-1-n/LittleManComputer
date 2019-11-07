@@ -1,0 +1,81 @@
+# Enter assembler code here
+#
+# To add comments begin lines with #
+# Code lines have 3 entries separated by tabs
+# > First an optional label,
+# > second an instruction mnemonic, and 
+# > third an address label if required.
+#
+# Valid mnemonics are:
+# HLT, ADD, SUB, STO, LDA,
+# BR, BRZ, BRP, IN, OUT, DAT
+
+	IN	
+	STO	num
+	STO	tmp
+	OUT
+	SUB	one
+	BRZ 	seul
+	SUB	max
+	BRP	error
+start	LDA	count
+	ADD	one
+	STO	count
+	LDA	tmp
+	SUB	two
+	STO	tmp
+	BRZ	even
+	BRP	start
+odd	LDA	num
+	ADD	num
+	ADD	num
+	ADD	one
+	STO	num
+	STO	tmp
+	LDA	zero
+	STO	count
+	BR	start
+even	LDA	count
+	OUT
+	STO	num
+	STO 	tmp
+	SUB	one
+	BRZ	seul
+	LDA	zero
+	STO	count
+	BR	start
+error	LDA	zero
+	OUT
+	HLT
+seul	HLT
+num	DAT	000
+tmp	DAT	000
+count	DAT	000
+one	DAT	001
+two	DAT	002
+max	DAT	664
+zero	DAT	000
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

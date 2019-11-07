@@ -1,0 +1,10 @@
+Feedback for LMC file: batch27.txt
+
+
+Attempting to compile: Compile failed
+
+Errors:
+Line 0: Bad instruction: '27;'
+
+
+

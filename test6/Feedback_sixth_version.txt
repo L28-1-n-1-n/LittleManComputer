@@ -1,0 +1,12 @@
+Feedback for LMC file: sixth_version.txt
+
+
+Attempting to compile: Compile successful. 47 mailboxes used.
+
+
+Attempting to run test 1: test27
+    Inputs:  27
+  Expected:  27 , 82 , 41 , 124 , 62 , 31 , 94 , 47 , 142 , 71 , 214 , 107 , 322 , 161 , 484 , 242 , 121 , 364 , 182 , 91 , 274 , 137 , 412 , 206 , 103 , 310 , 155 , 466 , 233 , 700 , 350 , 175 , 526 , 263 , 790 , 395 , 0
+    Output: 27, 82, 41, 124, 62, 31, 94, 47, 142, 71, 214, 107, 322, 161, 484, 242, 121, 364
+  Terminated after 10000 Fetch/execute cycles.
+
