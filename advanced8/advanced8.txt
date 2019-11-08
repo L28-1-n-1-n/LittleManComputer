@@ -33,11 +33,11 @@ start	LDA	tmp
 	STO	lastquo
 	BR	start
 odd	LDA	orig
-	SUB	lim
-	BRP	error
-	LDA	orig
 	SUB	slim
 	BRP	sloop
+	LDA	orig
+	SUB	lim
+	BRP	error
 	LDA	orig
 	ADD	orig
 	ADD	orig
@@ -74,6 +74,9 @@ adjust	LDA	evensum
 	STO	lastquo
 	BR	start
 sloop	LDA	evensum
+	SUB	slim
+	BRP	error
+	LDA	evensum
 	ADD	evensum
 	ADD	evensum
 	ADD	two
@@ -91,6 +94,9 @@ lastquo	DAT	001
 evensum DAT		000
 zero	DAT	000
 ocount	DAT	000
+
+
+
 
 
 
