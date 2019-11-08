@@ -1,0 +1,150 @@
+# This is the same algorithm as basic
+# except odd numbers are divided by 2
+# before they are printed
+# limits are set at various points
+# to avoid overflow
+# if number is greater than 332 (slim), 
+# 3*333+1 > 999, but 3*333+1/2 < 999
+# so "slim" is set at 332, where any odd number
+# above 332 is treated differently
+
+	IN	
+	STO	orig
+	STO	num
+	STO	tmp
+	OUT
+	SUB	one
+	BRZ 	seul
+start	LDA	tmp
+	SUB	lastquo
+	SUB	lastquo
+	STO	tmp
+	BRZ	even
+	BRP	adjust	
+	LDA	num
+	SUB	evensum
+	SUB	evensum
+	STO	tmp
+	SUB	one
+	BRZ	odd
+	LDA	one
+	STO	lastquo
+	BR	start
+odd	LDA	orig
+	SUB	slim
+	BRP	sloop
+
+# if number is greater than 665 and is odd,
+# 3 * this number + 1 > 999
+# so program branches to halt if that happens
+
+	LDA	orig
+	SUB	lim
+	BRP	error
+	LDA	orig
+	ADD	orig
+	ADD	orig
+	ADD	one
+	STO	orig
+	STO	num
+	STO	tmp
+	LDA	one
+	STO	lastquo
+	LDA	zero
+	STO	evensum
+	BR	start
+even	LDA	evensum
+	ADD	lastquo
+rep	OUT
+	STO	num
+	STO	tmp
+	STO	orig
+	SUB	one
+	BRZ	seul
+	LDA	one
+	STO	lastquo
+	LDA	zero
+	STO	evensum
+	BR	start
+error	LDA	zero
+	OUT
+	HLT
+adjust	LDA	evensum
+	ADD	lastquo
+	STO	evensum
+	LDA	lastquo
+	ADD	lastquo
+	STO	lastquo
+	BR	start
+
+# odd number above 332 is treated differently
+# to print number * 3 + 1 / 2, we instead
+# print sum of all powers of two thus far * 3
+# plus 2, this equals (3x+1)/2, where x is 
+# number above 332
+# but sum of all powers of two thus far also needs
+# to be less than 332
+
+sloop	LDA	evensum
+	SUB	slim
+	BRP	error
+	LDA	evensum
+	ADD	evensum
+	ADD	evensum
+	ADD	two
+	BR	rep
+seul	HLT
+orig	DAT	000
+num	DAT	000
+tmp	DAT	000
+count	DAT	000
+one	DAT	001
+two	DAT	002
+lim	DAT	665
+slim	DAT	332
+lastquo	DAT	001
+evensum DAT		000
+zero	DAT	000
+ocount	DAT	000
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
