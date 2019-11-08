@@ -1,38 +1,62 @@
-# Enter assembler code here
-#
-# To add comments begin lines with #
-# Code lines have 3 entries separated by tabs
-# > First an optional label,
-# > second an instruction mnemonic, and 
-# > third an address label if required.
-#
-# Valid mnemonics are:
-# HLT, ADD, SUB, STO, LDA,
-# BR, BRZ, BRP, IN, OUT, DAT
+# This is a recursive function to reduce the input
+# number quadratically, until negative is reached
+# even number divided by 2 is outputted as sum of
+# all previous subtractions that grew by power
+# of 2, and the remaining number fed into the
+# recursive function, until 1 or 0 is reached
+
+# input and storage of variables
 
 	IN	
 	STO	orig
 	STO	num
 	STO	tmp
 	OUT
+
+# handle case where input is 1
+
 	SUB	one
 	BRZ 	seul
+
+# recursive function, each time subtracting
+# twice the last subtracting factor
+# for example, if we subtract 2 in the last cycle
+# we will subtract 4 in this cycle
+# tmp is original number -(2+4+8+16+...) until 
+# tmp reaches zero, then it is an even number
+# or tmp reaches negative
+
 start	LDA	tmp
 	SUB	lastquo
 	SUB	lastquo
 	STO	tmp
 	BRZ	even
 	BRP	adjust	
+
+# negative tmp means either odd or smaller than
+# next sum of power of two
+
 	LDA	num
 	SUB	evensum
 	SUB	evensum
 	STO	tmp
 	SUB	one
 	BRZ	odd
+
+# case NOT_ODD: remainder of tmp fed into next
+# cycle of recursion
+
 	LDA	one
 	STO	lastquo
 	BR	start
+
+# case ODD: print appropriate output 
+# and reset all variables
+
 odd	LDA	orig
+
+# handle overflow
+
 	SUB	lim
 	BRP	error
 	LDA	orig
@@ -48,14 +72,25 @@ odd	LDA	orig
 	LDA	zero
 	STO	evensum
 	BR	start
+
+# case EVEN: print output as sum of all previous
+# powers of two subtracted from original number
+
 even	LDA	evensum
 	ADD	lastquo
 	OUT
 	STO	num
 	STO	tmp
 	STO	orig
+
+# ending condition: when 1 is reached
+
 	SUB	one
 	BRZ	seul
+
+# ending condition not met: reset variables and
+# enter next cycle of recursion with remainder
+
 	LDA	one
 	STO	lastquo
 	LDA	zero
@@ -64,6 +99,8 @@ even	LDA	evensum
 error	LDA	zero
 	OUT
 	HLT
+# subtracting factor is adjusted here 
+
 adjust	LDA	evensum
 	ADD	lastquo
 	STO	evensum
