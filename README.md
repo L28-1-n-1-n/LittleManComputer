@@ -1,2 +1,2 @@
 # LittleManComputer
-Recursively Quadratic Reduction Algorithm to tackle the  Collatz conjecture
+Recursively Quadratic Reduction Algorithm designed to tackle the  Collatz conjecture
